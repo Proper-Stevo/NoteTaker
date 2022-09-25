@@ -3,8 +3,6 @@
 		"title": "Test Title",
 		"text": "Test text"
 	},
-	{
-		"title": "Hello",
-		"text": "good morning"
-	}
+	null,
+	null
 ]

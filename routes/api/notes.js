@@ -35,8 +35,8 @@ router.post("/", async (req, res) => {
         if (err) {
             res.json(err);
         } else {
-            const newNote = req.body;
-            const notes = JSON.parse(data); // add ID here
+            const newNote = req.params.body_id;
+            const notes = JSON.parse(data);// add ID here
             notes.push(newNote);
             fs.writeFile("./db/db.json", JSON.stringify(notes, null, "\t"), (err) => {
                 if (err) {
@@ -52,15 +52,25 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
 
-    note.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-        .then((deletedNote) => {
-            res.json(deletedNote);
+    if(req.params.body_id) {
+        fs.readFile('./db/db.json', 'utf-8', (err, data) =>{
+            if(err) {
+                res.json(err);
+            } else {
+                const notes = JSON.parse(data);
+                for (let i = 0; i < notes.length; i++) {
+                    const newNote = note[i];
+                     if (req.params.body_id === newNote){
+                    notes.spliced(i,1);
+                     }
+              }
+        fs.writeFile("./db.db.json", JSON.stringify(notes), (err) => {
+            err? console.error(err) : console.log("Updated!")
+            res.json(req.params.body_id);
         })
-        .catch((err) => res.json(err))
+    }
+})
+    }
 });
 
 
