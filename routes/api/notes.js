@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
             res.json(err);
         } else {
             const newNote = req.body;
-            const notes = JSON.parse(data);
+            const notes = JSON.parse(data); // add ID here
             notes.push(newNote);
             fs.writeFile("./db/db.json", JSON.stringify(notes, null, "\t"), (err) => {
                 if (err) {
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
 
-    Note.destroy({
+    note.destroy({
         where: {
             id: req.params.id
         }
