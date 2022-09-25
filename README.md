@@ -51,6 +51,6 @@ GitHub: https://github.com/Proper-Stevo/NoteTaker
 Page: https://proper-stevo.github.io/NoteTaker/
 
 Images: 
-![Alt Text]()
+![Alt Text](https://github.com/Proper-Stevo/NoteTaker/blob/main/public/assets/test1.png)
 
-![Alt Text]()
+![Alt Text](https://github.com/Proper-Stevo/NoteTaker/blob/main/public/assets/test2.png)
