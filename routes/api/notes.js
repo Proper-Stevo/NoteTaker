@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
         if (err) {
             res.json(err);
         } else {
-            const newNote = req.params.body_id;
+            const newNote = req.body;
             const notes = JSON.parse(data);// add ID here
             notes.push(newNote);
             fs.writeFile("./db/db.json", JSON.stringify(notes, null, "\t"), (err) => {
@@ -52,21 +52,21 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
 
-    if(req.params.body_id) {
+    if(req.body) {
         fs.readFile('./db/db.json', 'utf-8', (err, data) =>{
             if(err) {
                 res.json(err);
             } else {
                 const notes = JSON.parse(data);
                 for (let i = 0; i < notes.length; i++) {
-                    const newNote = note[i];
-                     if (req.params.body_id === newNote){
+                    const newNote = notes[i];
+                     if (req.body === newNote){
                     notes.spliced(i,1);
                      }
               }
         fs.writeFile("./db.db.json", JSON.stringify(notes), (err) => {
             err? console.error(err) : console.log("Updated!")
-            res.json(req.params.body_id);
+            res.json(req.body);
         })
     }
 })
