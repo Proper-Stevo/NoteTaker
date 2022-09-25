@@ -2,7 +2,8 @@ const router = require('express').Router();
 
 const fs = require('fs');
 
-router.get("/notes", async (req, res) => {
+
+router.get("/", async (req, res) => {
 
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if (err) {
@@ -15,7 +16,7 @@ router.get("/notes", async (req, res) => {
 });
 
 // Get Notes 
-router.get("/", async (req, res) => {
+router.get("./notes", async (req, res) => {
 
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if (err) {
@@ -56,11 +57,11 @@ router.delete("/:id", async (req, res) => {
             id: req.params.id
         }
     })
-    .then((deletedNote) => {
-        res.json(deletedNote);
-    })
-    .catch((err) => res.json(err))
-    });
+        .then((deletedNote) => {
+            res.json(deletedNote);
+        })
+        .catch((err) => res.json(err))
+});
 
 
 module.exports = router;
